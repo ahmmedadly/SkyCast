@@ -24,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
 
         // Typewriter animation for welcome message
         val tvWelcomeMsg = findViewById<TextView>(R.id.tvWelcomeMsg)
-        val welcomeText = "Rain or shine, I’ve got your forecast."
+        val welcomeText = "Rain or shine, I got your forecast."
         val delay = 50L
         val index = intArrayOf(0)
         val handler = Handler(Looper.getMainLooper())
