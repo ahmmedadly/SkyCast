@@ -1,4 +1,4 @@
-package com.adly.skycast.data
+package com.adly.skycast.data.model
 
 
 import com.google.gson.annotations.SerializedName
@@ -9,7 +9,7 @@ data class Item8(
     @SerializedName("dt_txt")
     val dtTxt: String,
     val main: Main,
-    val pop: Int,
+    val pop: Double,
     val sys: Sys,
     val visibility: Int,
     val weather: List<Weather>,

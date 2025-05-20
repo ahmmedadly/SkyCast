@@ -1,4 +1,4 @@
-package com.adly.skycast.data
+package com.adly.skycast.data.model
 
 
 import com.google.gson.annotations.SerializedName

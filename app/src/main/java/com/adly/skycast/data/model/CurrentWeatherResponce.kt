@@ -1,5 +1,4 @@
-package com.adly.skycast.data
-import com.google.gson.annotations.SerializedName
+package com.adly.skycast.data.model
 
 data class CurrentWeatherResponce(
     val city: City,
