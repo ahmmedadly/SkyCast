@@ -33,9 +33,7 @@ class HomeFragment : Fragment() {
 
         // Initialize FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        binding.btnCurrentLocation.setOnClickListener {
-            getCurrentLocationWeather()
-        }
+        getCurrentLocationWeather()
 
 
         //  Autocomplete when user types

@@ -13,12 +13,6 @@
         android:inputType="text" />
 
     <Button
-        android:id="@+id/btnCurrentLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Get Weather for My Location" />
-
-    <Button
         android:id="@+id/btnFetchWeather"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
