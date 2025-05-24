@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="12dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wed 12PM"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:paddingBottom="4dp" />
+
+    <ImageView
+        android:id="@+id/imgWeatherIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:drawable/ic_menu_compass"
+        android:padding="4dp" />
+
+    <TextView
+        android:id="@+id/tvTempForecast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="26°C"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvDescForecast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
+
+</LinearLayout>

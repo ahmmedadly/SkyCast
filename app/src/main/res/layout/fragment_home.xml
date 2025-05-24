@@ -1,41 +1,78 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <AutoCompleteTextView
-        android:id="@+id/etCity"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search city"
-        android:inputType="text" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btnFetchWeather"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Get Weather" />
+        <!-- Autocomplete Input -->
+        <AutoCompleteTextView
+            android:id="@+id/etCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search city"
+            android:inputType="text"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:padding="12dp"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/tvCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="City Name"
-        android:textStyle="bold"
-        android:paddingTop="16dp" />
+        <!-- Search Button -->
+        <Button
+            android:id="@+id/btnFetchWeather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search Weather" />
 
-    <TextView
-        android:id="@+id/tvTemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Temperature" />
+        <!-- Current Weather Info -->
+        <TextView
+            android:id="@+id/tvCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp" />
 
-    <TextView
-        android:id="@+id/tvDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Weather Description" />
+        <TextView
+            android:id="@+id/tvTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="26°C"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"
+            android:paddingTop="8dp" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear sky"
+            android:textSize="20sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <!-- Forecast Label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5-Day Forecast"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="24dp"
+            android:paddingBottom="8dp" />
+
+        <!-- Forecast RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvForecast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:overScrollMode="never" />
+
+    </LinearLayout>
+</ScrollView>

@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.adly.skycast.databinding.FragmentHomeBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -23,6 +24,9 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        val forecastAdapter = ForecastAdapter()
+        binding.rvForecast.adapter = forecastAdapter
+        binding.rvForecast.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         getCurrentLocationWeather()
 
@@ -66,13 +70,10 @@ class HomeFragment : Fragment() {
         }
 
         // Observe cached data
-        viewModel.cachedForecast.observe(viewLifecycleOwner) { cached ->
-            cached?.firstOrNull()?.let {
-                binding.tvCity.text = "${it.cityName}, ${it.country}"
-                binding.tvTemp.text = "${it.temperature}°C"
-                binding.tvDesc.text = it.description
-            }
+        viewModel.cachedForecast.observe(viewLifecycleOwner) { forecast ->
+            forecastAdapter.submitList(forecast)
         }
+
 
         return binding.root
     }
