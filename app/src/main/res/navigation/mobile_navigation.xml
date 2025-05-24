@@ -20,5 +20,4 @@
         android:name="com.adly.skycast.ui.weather.WeatherDetailsFragment"
         android:label="Weather Details" />
 
-
 </navigation>

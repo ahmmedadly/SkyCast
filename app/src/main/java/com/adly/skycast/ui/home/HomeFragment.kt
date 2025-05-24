@@ -18,6 +18,9 @@ import com.adly.skycast.R
 import com.adly.skycast.databinding.FragmentHomeBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -28,6 +31,9 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         val forecastAdapter = ForecastAdapter()
+        binding.swipeRefresh.setOnRefreshListener {
+            getCurrentLocationWeather()
+        }
         binding.rvForecast.adapter = forecastAdapter
         binding.rvForecast.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.fabSearch.setOnClickListener {
@@ -37,17 +43,38 @@ class HomeFragment : Fragment() {
         getCurrentLocationWeather()
         // Observe live weather from API
         viewModel.weather.observe(viewLifecycleOwner) { weather ->
+            binding.swipeRefresh.isRefreshing = false
             weather?.let {
                 binding.tvCity.text = it.city.name
                 binding.tvTemp.text = "${it.list[0].main.temp}°C"
                 binding.tvDesc.text = it.list[0].weather[0].description
+                binding.tvHumidity.text = "Humidity: ${it.list[0].main.humidity}%"
+                binding.tvPressure.text = "Pressure: ${it.list[0].main.pressure} hPa"
+                binding.tvWind.text = "Wind: ${it.list[0].wind.speed} m/s"
+
             }
         }
 
         // Observe cached data
         viewModel.cachedForecast.observe(viewLifecycleOwner) { forecast ->
             forecastAdapter.submitList(forecast)
+
+            val first = forecast.firstOrNull()
+            val weatherLoaded = viewModel.weather.value != null
+
+            if (!weatherLoaded && first != null) {
+                val sdf = SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
+                val formatted = sdf.format(Date(first.timestamp))
+                val message = "⚠️ Offline • Last updated: $formatted"
+
+                binding.tvStatusInfo.text = message
+                binding.tvStatusInfo.visibility = View.VISIBLE
+            } else {
+                binding.tvStatusInfo.visibility = View.GONE
+            }
         }
+
+
 
 
         return binding.root

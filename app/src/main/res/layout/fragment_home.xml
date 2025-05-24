@@ -1,71 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-        <!-- Current Weather Info -->
-        <TextView
-            android:id="@+id/tvCity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="City"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingTop="16dp" />
-
-        <TextView
-            android:id="@+id/tvTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="26°C"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_blue_dark"
-            android:paddingTop="8dp" />
-
-        <TextView
-            android:id="@+id/tvDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clear sky"
-            android:textSize="20sp"
-            android:textColor="@android:color/darker_gray" />
-
-        <!-- Forecast Label -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5-Day Forecast"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingTop="24dp"
-            android:paddingBottom="8dp" />
-
-        <!-- Forecast RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvForecast"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:overScrollMode="never" />
+            android:layout_height="wrap_content">
 
-        <!-- Floating Action Button to open Search -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:src="@android:drawable/ic_menu_search"
-            app:backgroundTint="@color/white"
-            android:contentDescription="Search" />
-    </LinearLayout>
-</ScrollView>
+            <!-- Header: Search + City -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="16dp">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabSearch"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:contentDescription="Search"
+                    app:backgroundTint="@color/white"
+                    android:layout_marginEnd="16dp" />
+
+                <TextView
+                    android:id="@+id/tvCity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="City"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <!-- Current Weather Info -->
+            <TextView
+                android:id="@+id/tvTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="26°C"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_blue_dark"
+                android:paddingTop="8dp" />
+
+            <TextView
+                android:id="@+id/tvDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear sky"
+                android:textSize="20sp"
+                android:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tvHumidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Humidity: --%"
+                android:textSize="16sp"
+                android:paddingTop="4dp" />
+
+            <TextView
+                android:id="@+id/tvPressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pressure: ---- hPa"
+                android:textSize="16sp"
+                android:paddingTop="2dp" />
+
+            <TextView
+                android:id="@+id/tvWind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wind: -- m/s"
+                android:textSize="16sp"
+                android:paddingTop="2dp" />
+
+            <!-- Forecast Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5-Day Forecast"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="24dp"
+                android:paddingBottom="8dp" />
+
+            <!-- Forecast RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvForecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:overScrollMode="never" />
+
+            <!-- Last Updated Info -->
+            <TextView
+                android:id="@+id/tvStatusInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="13sp"
+                android:textColor="@android:color/holo_red_dark"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
