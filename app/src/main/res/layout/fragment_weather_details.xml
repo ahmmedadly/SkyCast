@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City, Country"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingBottom="12dp" />
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="26°C"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear sky"
+            android:textSize="18sp"
+            android:textColor="@android:color/darker_gray"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Humidity: 60%"
+            android:textSize="16sp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvPressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pressure: 1013 hPa"
+            android:textSize="16sp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvWind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wind: 3.4 m/s"
+            android:textSize="16sp"
+            android:paddingBottom="8dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvForecastDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:overScrollMode="never" />
+
+    </LinearLayout>
+
+</ScrollView>

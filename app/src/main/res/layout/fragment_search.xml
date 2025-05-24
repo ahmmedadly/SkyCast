@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:padding="16dp">
+
+    <AutoCompleteTextView
+        android:id="@+id/etCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search city"
+        android:inputType="text"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnFetchWeather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search" />
+
+</LinearLayout>

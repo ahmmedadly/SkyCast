@@ -10,15 +10,18 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.adly.skycast.R
 import com.adly.skycast.databinding.FragmentHomeBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -27,45 +30,17 @@ class HomeFragment : Fragment() {
         val forecastAdapter = ForecastAdapter()
         binding.rvForecast.adapter = forecastAdapter
         binding.rvForecast.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.fabSearch.setOnClickListener {
+            findNavController().navigate(R.id.searchFragment)
+        }
 
         getCurrentLocationWeather()
-
-        // Autocomplete input
-        binding.etCity.addTextChangedListener { editable ->
-            val query = editable?.toString()
-            if (!query.isNullOrBlank() && query.length >= 3) {
-                viewModel.searchCity(query)
-            }
-        }
-
-        // Button for city-based fetch
-        binding.btnFetchWeather.setOnClickListener {
-            val city = binding.etCity.text.toString()
-            if (city.isNotBlank()) {
-                viewModel.fetchWeather(city)
-            } else {
-                Toast.makeText(requireContext(), "Please enter a city name", Toast.LENGTH_SHORT).show()
-            }
-        }
-
         // Observe live weather from API
         viewModel.weather.observe(viewLifecycleOwner) { weather ->
             weather?.let {
                 binding.tvCity.text = it.city.name
                 binding.tvTemp.text = "${it.list[0].main.temp}°C"
                 binding.tvDesc.text = it.list[0].weather[0].description
-            }
-        }
-
-        // Observe autocomplete results
-        viewModel.suggestions.observe(viewLifecycleOwner) { locations ->
-            val cityNames = locations.map { "${it.name}, ${it.country}" }
-            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, cityNames)
-            binding.etCity.setAdapter(adapter)
-
-            binding.etCity.setOnItemClickListener { _, _, position, _ ->
-                val selected = locations[position]
-                viewModel.fetchWeatherByCoordinates(selected.lat, selected.lon)
             }
         }
 
