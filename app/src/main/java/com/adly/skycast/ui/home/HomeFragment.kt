@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adly.skycast.R
 import com.adly.skycast.databinding.FragmentHomeBinding
+import com.bumptech.glide.Glide
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.text.SimpleDateFormat
@@ -52,9 +53,16 @@ class HomeFragment : Fragment() {
                 binding.tvCity.text = it.city.name
                 binding.tvTemp.text = "${it.list[0].main.temp}°C"
                 binding.tvDesc.text = it.list[0].weather[0].description
+                binding.tvClouds.text = "Clouds: ${it.list[0].clouds.all}%"
                 binding.tvHumidity.text = "Humidity: ${it.list[0].main.humidity}%"
                 binding.tvPressure.text = "Pressure: ${it.list[0].main.pressure} hPa"
                 binding.tvWind.text = "Wind: ${it.list[0].wind.speed} m/s"
+                val now = SimpleDateFormat("EEE, dd MMM • hh:mm a", Locale.getDefault()).format(Date())
+                binding.tvCurrentDateTime.text = now
+                val iconCode = it.list[0].weather[0].icon
+                val iconUrl = "https://openweathermap.org/img/wn/${iconCode}@2x.png"
+                Glide.with(this).load(iconUrl).into(binding.ivIcon)
+
             }
         }
 

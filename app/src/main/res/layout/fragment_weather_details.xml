@@ -19,6 +19,16 @@
             android:textStyle="bold"
             android:paddingBottom="12dp" />
 
+        <TextView
+            android:id="@+id/tvCurrentDateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:text="Date , Time"
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp" />
+
         <ImageView
             android:id="@+id/ivIcon"
             android:layout_width="100dp"
@@ -39,10 +49,10 @@
             android:id="@+id/tvDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
             android:text="Clear sky"
-            android:textSize="18sp"
             android:textColor="@android:color/darker_gray"
-            android:paddingBottom="16dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvHumidity"
@@ -59,6 +69,14 @@
             android:text="Pressure: 1013 hPa"
             android:textSize="16sp"
             android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvClouds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Clouds: --%"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvWind"

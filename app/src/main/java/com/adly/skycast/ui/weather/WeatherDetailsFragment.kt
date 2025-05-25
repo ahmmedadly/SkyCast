@@ -34,7 +34,8 @@ class WeatherDetailsFragment : Fragment() {
                 binding.tvCity.text = "${it.city.name}, ${it.city.country}"
                 binding.tvTemp.text = "${item.main.temp.toInt()}°C"
                 binding.tvDesc.text = item.weather[0].description.replaceFirstChar(Char::titlecase)
-
+                binding.tvClouds.text = "Clouds: ${item.clouds.all}%"
+                binding.tvCurrentDateTime.text = item.dtTxt
                 binding.tvHumidity.text = "Humidity: ${item.main.humidity}%"
                 binding.tvPressure.text = "Pressure: ${item.main.pressure} hPa"
                 binding.tvWind.text = "Wind: ${item.wind.speed} m/s"
