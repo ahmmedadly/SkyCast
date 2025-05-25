@@ -12,6 +12,7 @@ import com.adly.skycast.data.model.WeatherForecastEntity
 import com.adly.skycast.data.remote_source.RetrofitInstance
 import com.adly.skycast.repository.WeatherRepository
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
@@ -32,8 +33,26 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _groupedForecast = MediatorLiveData<List<ForecastGroup>>()
     val groupedForecast: LiveData<List<ForecastGroup>> = _groupedForecast
+    // Today Hourly forecast for the day
+    private val _todayHourly = MutableLiveData<List<WeatherForecastEntity>>()
+    val todayHourly: LiveData<List<WeatherForecastEntity>> = _todayHourly
+
 
     init {
+        val dao = AppDatabase.getDatabase(getApplication()).weatherDao()
+        repository = WeatherRepository(RetrofitInstance.api, dao)
+
+        // Load today's hourly forecast from 12 AM to now
+        repository.getPastHourlyToday().observeForever { list ->
+            val onePerHour = list.distinctBy { forecast ->
+                // Round to nearest hour using timestamp
+                val cal = Calendar.getInstance().apply { timeInMillis = forecast.timestamp }
+                "${cal.get(Calendar.YEAR)}-${cal.get(Calendar.MONTH)}-${cal.get(Calendar.DAY_OF_MONTH)} ${cal.get(Calendar.HOUR_OF_DAY)}"
+            }
+            _todayHourly.value = onePerHour
+        }
+
+
         _groupedForecast.addSource(cachedForecast) { list ->
             val grouped = list.groupBy { forecast ->
                 forecast.dateText.substring(0, 10) // group by YYYY-MM-DD
@@ -42,12 +61,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
             _groupedForecast.value = grouped
         }
-    }
-
-
-    init {
-        val dao = AppDatabase.getDatabase(application).weatherDao()
-        repository = WeatherRepository(RetrofitInstance.api, dao)
     }
 
     fun fetchWeather(city: String) {

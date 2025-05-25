@@ -6,6 +6,7 @@ import com.adly.skycast.data.local_source.WeatherDao
 import com.adly.skycast.data.model.CurrentWeatherResponce
 import com.adly.skycast.data.model.WeatherForecastEntity
 import com.adly.skycast.data.remote_source.WeatherApiService
+import java.util.Calendar
 
 class WeatherRepository(
     private val api: WeatherApiService,
@@ -45,4 +46,17 @@ class WeatherRepository(
             Log.e("WeatherRepo", "Caching error: ${e.message}")
         }
     }
+    fun getPastHourlyToday(): LiveData<List<WeatherForecastEntity>> {
+        val now = System.currentTimeMillis()
+        val cal = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+        val startOfDay = cal.timeInMillis
+
+        return dao.getTodayPastForecast(startOfDay, now)
+    }
+
 }

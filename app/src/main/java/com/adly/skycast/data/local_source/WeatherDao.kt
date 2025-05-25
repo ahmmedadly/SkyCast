@@ -15,4 +15,13 @@ interface WeatherDao {
 
     @Query("DELETE FROM weather_forecast WHERE lat = :lat AND lon = :lon")
     suspend fun deleteOldForecast(lat: Double, lon: Double)
+
+    // for saving the day hourly data
+    @Query("""
+    SELECT * FROM weather_forecast
+    WHERE timestamp >= :startOfDay AND timestamp <= :now
+    ORDER BY timestamp ASC
+""")
+    fun getTodayPastForecast(startOfDay: Long, now: Long): LiveData<List<WeatherForecastEntity>>
+
 }

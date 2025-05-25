@@ -33,6 +33,14 @@ class HomeFragment : Fragment() {
         binding.swipeRefresh.setOnRefreshListener {
             getCurrentLocationWeather()
         }
+        // Today Hourly adapter setup
+        val todayAdapter = TodayHourlyAdapter()
+        binding.rvTodayTimeline.adapter = todayAdapter
+        binding.rvTodayTimeline.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        viewModel.todayHourly.observe(viewLifecycleOwner) { list ->
+            todayAdapter.submitList(list)
+        }
 
         // FAB to search
         binding.fabSearch.setOnClickListener {
