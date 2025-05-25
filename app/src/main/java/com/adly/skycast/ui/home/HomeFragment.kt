@@ -5,13 +5,10 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.*
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adly.skycast.R
@@ -30,17 +27,24 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        val forecastAdapter = ForecastAdapter()
+
+        // Swipe to refresh
         binding.swipeRefresh.setOnRefreshListener {
             getCurrentLocationWeather()
         }
-        binding.rvForecast.adapter = forecastAdapter
-        binding.rvForecast.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        // FAB to search
         binding.fabSearch.setOnClickListener {
             findNavController().navigate(R.id.searchFragment)
         }
 
+        // Forecast grouped adapter setup
+        val groupedAdapter = GroupedForecastAdapter()
+        binding.rvGroupedForecast.adapter = groupedAdapter
+        binding.rvGroupedForecast.layoutManager = LinearLayoutManager(requireContext())
+
         getCurrentLocationWeather()
+
         // Observe live weather from API
         viewModel.weather.observe(viewLifecycleOwner) { weather ->
             binding.swipeRefresh.isRefreshing = false
@@ -51,14 +55,16 @@ class HomeFragment : Fragment() {
                 binding.tvHumidity.text = "Humidity: ${it.list[0].main.humidity}%"
                 binding.tvPressure.text = "Pressure: ${it.list[0].main.pressure} hPa"
                 binding.tvWind.text = "Wind: ${it.list[0].wind.speed} m/s"
-
             }
         }
 
-        // Observe cached data
-        viewModel.cachedForecast.observe(viewLifecycleOwner) { forecast ->
-            forecastAdapter.submitList(forecast)
+        // Observe grouped forecast
+        viewModel.groupedForecast.observe(viewLifecycleOwner) { groupedList ->
+            groupedAdapter.submitList(groupedList)
+        }
 
+        // Observe cached forecast for offline state
+        viewModel.cachedForecast.observe(viewLifecycleOwner) { forecast ->
             val first = forecast.firstOrNull()
             val weatherLoaded = viewModel.weather.value != null
 
@@ -73,9 +79,6 @@ class HomeFragment : Fragment() {
                 binding.tvStatusInfo.visibility = View.GONE
             }
         }
-
-
-
 
         return binding.root
     }

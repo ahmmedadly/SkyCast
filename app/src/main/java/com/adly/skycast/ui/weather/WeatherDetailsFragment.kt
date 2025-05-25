@@ -9,6 +9,7 @@ import com.adly.skycast.ui.home.HomeViewModel
 import com.bumptech.glide.Glide
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adly.skycast.ui.home.ForecastAdapter
+import com.adly.skycast.ui.home.GroupedForecastAdapter
 
 
 class WeatherDetailsFragment : Fragment() {
@@ -17,12 +18,14 @@ class WeatherDetailsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentWeatherDetailsBinding.inflate(inflater, container, false)
-        val forecastAdapter = ForecastAdapter()
-        binding.rvForecastDetails.adapter = forecastAdapter
-        binding.rvForecastDetails.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        viewModel.cachedForecast.observe(viewLifecycleOwner) { forecast ->
-            forecastAdapter.submitList(forecast)
+        val groupedAdapter = GroupedForecastAdapter()
+        binding.rvGroupedForecastDetails.adapter = groupedAdapter
+        binding.rvGroupedForecastDetails.layoutManager = LinearLayoutManager(requireContext())
+
+        viewModel.groupedForecast.observe(viewLifecycleOwner) { groupedList ->
+            groupedAdapter.submitList(groupedList)
         }
+
 
         viewModel.weather.observe(viewLifecycleOwner) { weather ->
             weather?.let {

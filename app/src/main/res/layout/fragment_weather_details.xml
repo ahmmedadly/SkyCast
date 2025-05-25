@@ -67,12 +67,20 @@
             android:text="Wind: 3.4 m/s"
             android:textSize="16sp"
             android:paddingBottom="8dp" />
+        <TextView
+            android:id="@+id/tvForecastLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5-Day Forecast"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="24dp"
+            android:paddingBottom="8dp" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvForecastDetails"
+            android:id="@+id/rvGroupedForecastDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
             android:overScrollMode="never" />
 
     </LinearLayout>

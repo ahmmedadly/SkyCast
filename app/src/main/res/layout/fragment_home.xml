@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
@@ -25,78 +23,92 @@
                 android:gravity="center_vertical"
                 android:paddingTop="16dp">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                <ImageButton
                     android:id="@+id/fabSearch"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/ic_menu_search"
+                    android:layout_width="44dp"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="16dp"
                     android:contentDescription="Search"
-                    app:backgroundTint="@color/white"
-                    android:layout_marginEnd="16dp" />
+                    android:src="@android:drawable/ic_menu_search"
+                    android:background="@null" />
 
                 <TextView
                     android:id="@+id/tvCity"
-                    android:layout_width="0dp"
+                    android:layout_width="283dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:text="City"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!-- Current Weather Info -->
             <TextView
                 android:id="@+id/tvTemp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="117dp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:layout_gravity="center"
                 android:text="26°C"
-                android:textSize="40sp"
-                android:textStyle="bold"
                 android:textColor="@android:color/holo_blue_dark"
-                android:paddingTop="8dp" />
+                android:textSize="40sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvDesc"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
                 android:text="Clear sky"
-                android:textSize="20sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@android:color/darker_gray"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tvHumidity"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:paddingTop="4dp"
                 android:text="Humidity: --%"
-                android:textSize="16sp"
-                android:paddingTop="4dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvPressure"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:paddingTop="2dp"
                 android:text="Pressure: ---- hPa"
-                android:textSize="16sp"
-                android:paddingTop="2dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvWind"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:paddingTop="2dp"
                 android:text="Wind: -- m/s"
-                android:textSize="16sp"
-                android:paddingTop="2dp" />
-
-            <!-- Forecast Label -->
+                android:textSize="16sp" />
             <TextView
+                android:id="@+id/tvForecastLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5-Day Forecast"
+                android:layout_gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:paddingTop="24dp"
                 android:paddingBottom="8dp" />
+
+            <!-- Forecast Label -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGroupedForecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
 
             <!-- Forecast RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView

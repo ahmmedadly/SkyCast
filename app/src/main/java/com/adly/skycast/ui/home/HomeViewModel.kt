@@ -6,11 +6,13 @@ import androidx.lifecycle.*
 import com.adly.skycast.BuildConfig
 import com.adly.skycast.data.local_source.AppDatabase
 import com.adly.skycast.data.model.CurrentWeatherResponce
+import com.adly.skycast.data.model.ForecastGroup
 import com.adly.skycast.data.model.GeoLocation
 import com.adly.skycast.data.model.WeatherForecastEntity
 import com.adly.skycast.data.remote_source.RetrofitInstance
 import com.adly.skycast.repository.WeatherRepository
 import kotlinx.coroutines.launch
+
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -27,6 +29,21 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     // City autocomplete suggestions
     private val _suggestions = MutableLiveData<List<GeoLocation>>()
     val suggestions: LiveData<List<GeoLocation>> = _suggestions
+
+    private val _groupedForecast = MediatorLiveData<List<ForecastGroup>>()
+    val groupedForecast: LiveData<List<ForecastGroup>> = _groupedForecast
+
+    init {
+        _groupedForecast.addSource(cachedForecast) { list ->
+            val grouped = list.groupBy { forecast ->
+                forecast.dateText.substring(0, 10) // group by YYYY-MM-DD
+            }.map { (date, forecasts) ->
+                ForecastGroup(date, forecasts)
+            }
+            _groupedForecast.value = grouped
+        }
+    }
+
 
     init {
         val dao = AppDatabase.getDatabase(application).weatherDao()
