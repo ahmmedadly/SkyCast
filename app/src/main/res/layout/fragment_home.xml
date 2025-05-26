@@ -1,175 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:clipChildren="false">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="4dp">
+
+            <!-- Header Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="8dp">
 
                 <ImageButton
-                    android:id="@+id/fabSearch"
-                    android:layout_width="44dp"
-                    android:layout_height="45dp"
-                    android:layout_marginEnd="16dp"
-                    android:contentDescription="Search"
-                    android:src="@android:drawable/ic_menu_search"
-                    android:background="@null" />
+                android:id="@+id/fabSearch"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/more_options"
+                app:tint="?attr/colorPrimary"
+                android:layout_marginEnd="4dp" />
 
                 <TextView
-                    android:id="@+id/tvCity"
-                    android:layout_width="283dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:text="City"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                android:id="@+id/tvCity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="City"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorPrimary" />
+
+                <ImageButton
+                android:id="@+id/fabSetting"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/setting"
+                app:tint="?attr/colorPrimary"
+                android:layout_marginStart="4dp" />
             </LinearLayout>
 
-            <!-- Current Weather Info -->
+            <!-- Weather Content -->
             <TextView
                 android:id="@+id/tvCurrentDateTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
-                android:text="Date , Time"
                 android:textAlignment="center"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp" />
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="12sp"
+            android:paddingBottom="4dp" />
 
             <TextView
                 android:id="@+id/tvTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingTop="6dp"
-                android:text="26°C"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="44sp"
+            android:textColor="?attr/colorPrimary"
+            android:textStyle="bold"
+            android:paddingVertical="8dp" />
 
             <ImageView
                 android:id="@+id/ivIcon"
-                android:layout_width="100dp"
-                android:layout_height="71dp"
-                android:layout_gravity="center"
-                android:contentDescription="Weather Icon" />
+                android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp" />
+
+            <!-- Weather Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="4dp"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tvDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:text="Clear sky"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="20sp" />
+                android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:paddingBottom="4dp" />
 
             <TextView
                 android:id="@+id/tvClouds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Clouds: --%"
-                android:textSize="16sp" />
-
+                android:text="Clouds: 0%"
+                android:textSize="12sp"
+            android:textColor="?android:attr/textColorPrimary" />
 
             <TextView
                 android:id="@+id/tvHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingTop="4dp"
-                android:text="Humidity: --%"
-                android:textSize="16sp" />
+                android:text="Humidity: 26%"
+                android:textSize="12sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingTop="2dp" />
 
             <TextView
                 android:id="@+id/tvPressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingTop="2dp"
-                android:text="Pressure: ---- hPa"
-                android:textSize="16sp" />
+                android:text="Pressure: 1009 hPa"
+                android:textSize="12sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingTop="2dp" />
 
             <TextView
                 android:id="@+id/tvWind"
                 android:layout_width="wrap_content"
-                android:layout_height="34dp"
-                android:layout_gravity="center"
-                android:paddingTop="2dp"
-                android:text="Wind: -- m/s"
-                android:textSize="16sp" />
-            <!-- Today Hourly Timeline -->
-            <TextView
-                android:id="@+id/tvTodayTimeline"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Today’s Timeline"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:paddingTop="24dp"
-                android:paddingBottom="8dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTodayTimeline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:overScrollMode="never" />
-
-            <!-- Forecast Label -->
-            <TextView
-                android:id="@+id/tvForecastLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingTop="24dp"
-                android:paddingBottom="8dp"
-                android:text="5-Day Forecast"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvGroupedForecast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
-
-
-            <!-- Forecast RecyclerView -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvForecast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:overScrollMode="never" />
-
-            <!-- Last Updated Info -->
-            <TextView
-                android:id="@+id/tvStatusInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="13sp"
-                android:textColor="@android:color/holo_red_dark"
-                android:gravity="center"
-                android:paddingTop="8dp"
-                android:visibility="gone" />
-
+                android:text="Wind: 3.21 m/s"
+                android:textSize="12sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingTop="2dp" />
         </LinearLayout>
-    </ScrollView>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Today's Timeline Section -->
+    <TextView
+        android:id="@+id/tvTodayTimeline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today’s Timeline"
+        android:textSize="16sp"
+    android:textStyle="bold"
+    android:textColor="?attr/colorPrimary"
+    android:paddingTop="12dp"
+    android:paddingBottom="4dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTodayTimeline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:layout_marginBottom="4dp" />
+
+    <!-- 5-Day Forecast Section -->
+    <TextView
+        android:id="@+id/tvForecastLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5-Day Forecast"
+        android:textSize="16sp"
+    android:textStyle="bold"
+    android:textColor="?attr/colorPrimary"
+    android:paddingTop="12dp"
+    android:paddingBottom="4dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGroupedForecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+    android:clipToPadding="false"
+    android:clipChildren="false" />
+
+    <TextView
+        android:id="@+id/tvStatusInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="12sp"
+    android:textColor="@android:color/holo_red_dark"
+    android:gravity="center"
+    android:paddingTop="4dp"
+    android:visibility="gone" />
+
+</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

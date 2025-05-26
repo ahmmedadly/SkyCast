@@ -1,21 +1,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="?attr/colorSurface">
 
-    <AutoCompleteTextView
-        android:id="@+id/etCity"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/TextInputStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search city"
-        android:inputType="text"
-        android:drawableStart="@android:drawable/ic_menu_search"
-        android:padding="12dp"
+        app:startIconDrawable="@android:drawable/ic_search_category_default"
+        app:startIconTint="?attr/colorPrimary">
+
+        <AutoCompleteTextView
+            android:id="@+id/etCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search city"
+            android:inputType="text"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingVertical="14dp"
+            android:background="@null" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFetchWeather"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Search"
+        android:layout_marginTop="24dp"
         android:textSize="16sp" />
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:text="OR"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider" />
+
     <Button
-        android:id="@+id/btnFetchWeather"
+        android:id="@+id/btnFavorites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:text="See Favorite Locations"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@android:drawable/btn_star"
+        android:drawablePadding="8dp" />
+
 
 </LinearLayout>

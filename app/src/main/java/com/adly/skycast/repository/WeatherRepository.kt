@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.adly.skycast.data.local_source.WeatherDao
 import com.adly.skycast.data.model.CurrentWeatherResponce
+import com.adly.skycast.data.model.FavoriteLocationEntity
 import com.adly.skycast.data.model.WeatherForecastEntity
 import com.adly.skycast.data.remote_source.WeatherApiService
 import java.util.Calendar
@@ -58,5 +59,22 @@ class WeatherRepository(
 
         return dao.getTodayPastForecast(startOfDay, now)
     }
+    suspend fun cleanupOldForecasts() {
+        val cal = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+        val startOfToday = cal.timeInMillis
+        dao.deleteOldForecasts(startOfToday)
+    }
+    fun getFavorites(): LiveData<List<FavoriteLocationEntity>> = dao.getAllFavorites()
+
+    suspend fun removeFavorite(location: FavoriteLocationEntity) = dao.deleteFavorite(location)
+    suspend fun insertFavorite(fav: FavoriteLocationEntity) {
+        dao.insertFavorite(fav)
+    }
+
 
 }

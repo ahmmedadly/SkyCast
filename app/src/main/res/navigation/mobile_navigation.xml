@@ -19,5 +19,10 @@
         android:id="@+id/weatherDetailsFragment"
         android:name="com.adly.skycast.ui.weather.WeatherDetailsFragment"
         android:label="Weather Details" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.adly.skycast.ui.favorites.FavoritesFragment"
+        android:label="Favorites" />
+
 
 </navigation>

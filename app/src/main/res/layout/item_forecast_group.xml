@@ -1,24 +1,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="12dp"
-    android:paddingBottom="12dp">
+    android:paddingVertical="16dp">
 
     <TextView
         android:id="@+id/tvDayTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Day"
-        android:textStyle="bold"
         android:textSize="18sp"
-        android:paddingStart="8dp" />
+        android:textColor="?attr/colorPrimary"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="12dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/textColorSecondary"
+        android:alpha="0.2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDayItems"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp" />
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="8dp" />
+
 </LinearLayout>

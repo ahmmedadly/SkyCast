@@ -1,11 +1,18 @@
 package com.adly.skycast.ui.home
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.adly.skycast.BuildConfig
 import com.adly.skycast.data.local_source.AppDatabase
 import com.adly.skycast.data.model.CurrentWeatherResponce
+import com.adly.skycast.data.model.FavoriteLocationEntity
 import com.adly.skycast.data.model.ForecastGroup
 import com.adly.skycast.data.model.GeoLocation
 import com.adly.skycast.data.model.WeatherForecastEntity
@@ -13,6 +20,7 @@ import com.adly.skycast.data.remote_source.RetrofitInstance
 import com.adly.skycast.repository.WeatherRepository
 import kotlinx.coroutines.launch
 import java.util.Calendar
+import java.util.concurrent.TimeUnit
 
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
@@ -86,15 +94,13 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun fetchWeatherByCoordinates(lat: Double, lon: Double) {
-        // Load from DB first (offline support)
-        loadCachedForecast(lat, lon)
-
         // Then fetch from API and update cache
         viewModelScope.launch {
             try {
                 val response = RetrofitInstance.api.getForecastByCoords(lat, lon, BuildConfig.MY_API_KEY)
                 _weather.value = response
                 repository.cacheForecastFromResponse(response, lat, lon)
+                loadCachedForecast(lat, lon)
             } catch (e: Exception) {
                 Log.e("WeatherAPI", "API Error: ${e.message}")
             }
@@ -106,6 +112,47 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             repository.getCachedForecast(lat, lon).observeForever {
                 _cachedForecast.value = it
             }
+        }
+    }
+    fun scheduleDailyCleanup(context: Context) {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
+            .build()
+
+        val request = PeriodicWorkRequestBuilder<ForecastCleanupWorker>(1, TimeUnit.DAYS)
+            .setInitialDelay(calculateMidnightDelay(), TimeUnit.MILLISECONDS)
+            .setConstraints(constraints)
+            .build()
+
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+            "DailyForecastCleanup",
+            ExistingPeriodicWorkPolicy.REPLACE,
+            request
+        )
+    }
+
+    fun calculateMidnightDelay(): Long {
+        val now = Calendar.getInstance()
+        val midnight = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+            add(Calendar.DAY_OF_YEAR, 1)
+        }
+        return midnight.timeInMillis - now.timeInMillis
+    }
+    val favorites: LiveData<List<FavoriteLocationEntity>> = repository.getFavorites()
+
+
+    fun addFavorite(fav: FavoriteLocationEntity) {
+        viewModelScope.launch {
+            repository.insertFavorite(fav)
+        }
+    }
+    fun removeFavorite(favorite: FavoriteLocationEntity) {
+        viewModelScope.launch {
+            repository.removeFavorite(favorite)
         }
     }
 }

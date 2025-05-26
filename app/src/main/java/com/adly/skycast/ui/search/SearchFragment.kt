@@ -26,6 +26,9 @@ class SearchFragment : Fragment() {
                 viewModel.searchCity(query.toString())
             }
         }
+        binding.btnFavorites.setOnClickListener {
+            findNavController().navigate(R.id.favoritesFragment)
+        }
         // Manual search button click
         binding.btnFetchWeather.setOnClickListener {
             val city = binding.etCity.text.toString()

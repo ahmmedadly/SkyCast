@@ -2,12 +2,15 @@ package com.adly.skycast.ui.weather
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.adly.skycast.databinding.FragmentWeatherDetailsBinding
 import com.adly.skycast.ui.home.HomeViewModel
 import com.bumptech.glide.Glide
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.adly.skycast.data.model.FavoriteLocationEntity
 import com.adly.skycast.ui.home.ForecastAdapter
 import com.adly.skycast.ui.home.GroupedForecastAdapter
 
@@ -25,7 +28,22 @@ class WeatherDetailsFragment : Fragment() {
         viewModel.groupedForecast.observe(viewLifecycleOwner) { groupedList ->
             groupedAdapter.submitList(groupedList)
         }
+        binding.btnAddToFavorites.setOnClickListener {
+            viewModel.weather.value?.let { weather ->
+                val city = weather.city
+                val fav = FavoriteLocationEntity(
+                    name = city.name,
+                    country = city.country,
+                    lat = city.coord.lat,
+                    lon = city.coord.lon
+                )
+                viewModel.addFavorite(fav)
+                Toast.makeText(requireContext(), "Added to favorites", Toast.LENGTH_SHORT).show()
 
+                // Navigate back to Search or Home
+                findNavController().popBackStack()
+            }
+        }
 
         viewModel.weather.observe(viewLifecycleOwner) { weather ->
             weather?.let {

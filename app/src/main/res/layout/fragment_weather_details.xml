@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp">
@@ -14,27 +15,39 @@
             android:id="@+id/tvCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="City, Country"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingBottom="12dp" />
+            android:textSize="28sp"
+            android:textColor="?attr/colorPrimary"
+            android:paddingBottom="16dp" />
 
+        <!-- Date/Time -->
         <TextView
             android:id="@+id/tvCurrentDateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="4dp"
+            android:paddingBottom="8dp"
             android:text="Date , Time"
             android:textAlignment="center"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="14sp" />
 
+        <!-- Weather Icon -->
         <ImageView
             android:id="@+id/ivIcon"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginBottom="12dp" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddToFavorites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@android:drawable/btn_star"
+            android:drawablePadding="8dp"
+            android:layout_marginTop="12dp"
+            android:textAllCaps="false"/>
+
+
+        <!-- Temperature -->
         <TextView
             android:id="@+id/tvTemp"
             android:layout_width="wrap_content"
@@ -42,49 +55,65 @@
             android:text="26°C"
             android:textSize="40sp"
             android:textStyle="bold"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="?attr/colorPrimary"
             android:paddingBottom="8dp" />
 
+        <!-- Weather Description -->
         <TextView
             android:id="@+id/tvDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
             android:text="Clear sky"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tvHumidity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Humidity: 60%"
-            android:textSize="16sp"
-            android:paddingBottom="4dp" />
 
-        <TextView
-            android:id="@+id/tvPressure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pressure: 1013 hPa"
-            android:textSize="16sp"
-            android:paddingBottom="4dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvClouds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Clouds: --%"
-            android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/tvHumidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Humidity: 60%"
+                    android:textSize="16sp"
+                    android:paddingBottom="4dp"
+                    android:textColor="?android:attr/textColorPrimary" />
 
-        <TextView
-            android:id="@+id/tvWind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wind: 3.4 m/s"
-            android:textSize="16sp"
-            android:paddingBottom="8dp" />
+                <TextView
+                    android:id="@+id/tvWind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wind: 10 m/s"
+                    android:textSize="16sp"
+                    android:paddingBottom="4dp"
+                    android:textColor="?android:attr/textColorPrimary" />
+                <TextView
+                    android:id="@+id/tvPressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pressure: 1013 hPa"
+                    android:textSize="16sp"
+                    android:paddingBottom="4dp"
+                    android:textColor="?android:attr/textColorPrimary" />
+                <TextView
+                    android:id="@+id/tvClouds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clouds: 0%"
+                    android:textSize="16sp"
+                    android:paddingBottom="4dp"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+
+            </LinearLayout>
+
+        <!-- Forecast Label -->
         <TextView
             android:id="@+id/tvForecastLabel"
             android:layout_width="wrap_content"
@@ -92,9 +121,11 @@
             android:text="5-Day Forecast"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="?attr/colorPrimary"
             android:paddingTop="24dp"
             android:paddingBottom="8dp" />
 
+        <!-- Forecast RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvGroupedForecastDetails"
             android:layout_width="match_parent"
@@ -102,5 +133,4 @@
             android:overScrollMode="never" />
 
     </LinearLayout>
-
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

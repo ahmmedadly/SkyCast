@@ -2,6 +2,7 @@ package com.adly.skycast.data.local_source
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.adly.skycast.data.model.FavoriteLocationEntity
 import com.adly.skycast.data.model.WeatherForecastEntity
 
 @Dao
@@ -23,5 +24,16 @@ interface WeatherDao {
     ORDER BY timestamp ASC
 """)
     fun getTodayPastForecast(startOfDay: Long, now: Long): LiveData<List<WeatherForecastEntity>>
+
+    @Query("DELETE FROM weather_forecast WHERE timestamp < :cutoff")
+    suspend fun deleteOldForecasts(cutoff: Long)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFavorite(location: FavoriteLocationEntity)
+
+    @Delete
+    suspend fun deleteFavorite(location: FavoriteLocationEntity)
+
+    @Query("SELECT * FROM favorite_locations")
+    fun getAllFavorites(): LiveData<List<FavoriteLocationEntity>>
 
 }
