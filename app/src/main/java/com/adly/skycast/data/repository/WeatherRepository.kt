@@ -1,4 +1,4 @@
-package com.adly.skycast.repository
+package com.adly.skycast.data.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData

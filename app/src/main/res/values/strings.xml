@@ -5,12 +5,26 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_description">Options menu</string>
+    <string name="clouds">Clouds: %1$d%%</string>
+    <string name="humidity">Humidity: %1$d%%</string>
+    <string name="pressure">Pressure: %1$d hPa</string>
+    <string name="wind">Wind: %1$s</string>
+    <string name="today_timeline">Today\'s Timeline</string>
+    <string name="forecast_5_day">5-Day Forecast</string>
+    <string name="settings">Settings</string>
+    <string name="added_to_favorites">Added to favorites</string>
+    <string name="invalid_coordinates">Invalid manual coordinates</string>
+    <string name="removed_favorite">Removed %s</string>
+    <string name="UNDO">Language</string>
+
+
+
+
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>

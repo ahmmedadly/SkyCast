@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.preference.PreferenceManager
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
@@ -17,7 +18,7 @@ import com.adly.skycast.data.model.ForecastGroup
 import com.adly.skycast.data.model.GeoLocation
 import com.adly.skycast.data.model.WeatherForecastEntity
 import com.adly.skycast.data.remote_source.RetrofitInstance
-import com.adly.skycast.repository.WeatherRepository
+import com.adly.skycast.data.repository.WeatherRepository
 import kotlinx.coroutines.launch
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
@@ -155,4 +156,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             repository.removeFavorite(favorite)
         }
     }
+    fun getTemperatureUnit(context: Context): String {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        return prefs.getString("temp_unit", "CELSIUS") ?: "CELSIUS"
+    }
+
+    fun getWindSpeedUnit(context: Context): String {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        return prefs.getString("wind_speed_unit", "KMH") ?: "KMH"
+    }
+
 }

@@ -5,7 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.adly.skycast.data.local_source.AppDatabase
 import com.adly.skycast.data.remote_source.RetrofitInstance
-import com.adly.skycast.repository.WeatherRepository
+import com.adly.skycast.data.repository.WeatherRepository
 
 class ForecastCleanupWorker(
     context: Context,

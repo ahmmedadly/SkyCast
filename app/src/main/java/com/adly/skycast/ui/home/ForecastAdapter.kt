@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adly.skycast.R
 import com.adly.skycast.data.model.WeatherForecastEntity
 import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>() {
 
@@ -33,7 +35,15 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
 
     override fun onBindViewHolder(holder: ForecastViewHolder, position: Int) {
         val item = forecastList[position]
-        holder.tvDate.text = item.dateText.substring(5, 16)  // e.g., "04-24 15:00"
+        // Parse the dateText into a Date object
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("MMM dd, HH:mm", Locale.getDefault())
+        try {
+            val date = inputFormat.parse(item.dateText)
+            holder.tvDate.text = outputFormat.format(date)
+        } catch (e: Exception) {
+            holder.tvDate.text = item.dateText.substring(5, 16) // Fallback
+        }
         holder.tvTemp.text = "${item.temperature.toInt()}°C"
         holder.tvDesc.text = item.description
         val iconUrl = "https://openweathermap.org/img/wn/${item.icon}@2x.png"

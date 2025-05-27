@@ -9,7 +9,7 @@ import com.adly.skycast.data.model.FavoriteLocationEntity
 import com.adly.skycast.databinding.ItemFavoriteLocationBinding
 
 class FavoriteLocationAdapter(
-    private val onClick: (FavoriteLocationEntity) -> Unit, // Fixed: Added comma
+    private val onClick: (FavoriteLocationEntity) -> Unit,
     private val onDelete: (FavoriteLocationEntity) -> Unit
 ) : ListAdapter<FavoriteLocationEntity, FavoriteLocationAdapter.FavViewHolder>(DIFF_CALLBACK) {
 
@@ -18,11 +18,11 @@ class FavoriteLocationAdapter(
         fun bind(
             item: FavoriteLocationEntity,
             onClick: (FavoriteLocationEntity) -> Unit,
-            onDelete: (FavoriteLocationEntity) -> Unit // Added parameter
+            onDelete: (FavoriteLocationEntity) -> Unit
         ) {
             binding.tvCityName.text = "${item.name}, ${item.country}"
             binding.root.setOnClickListener { onClick(item) }
-            binding.btnDelete.setOnClickListener { onDelete(item) } // Fixed: Use passed onDelete
+            binding.btnDelete.setOnClickListener { onDelete(item) }
         }
     }
 
@@ -33,11 +33,10 @@ class FavoriteLocationAdapter(
             false
         )
         return FavViewHolder(binding)
-        // Removed erroneous holder.bind() call
     }
 
     override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
-        holder.bind(getItem(position), onClick, onDelete) // Fixed: Added onDelete parameter
+        holder.bind(getItem(position), onClick, onDelete)
     }
 
     companion object {

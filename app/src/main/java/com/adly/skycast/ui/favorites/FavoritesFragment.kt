@@ -33,8 +33,11 @@ class FavoritesFragment : Fragment() {
                 // Delete the favorite
                 viewModel.removeFavorite(favorite)
                 // Show undo Snackbar
-                Snackbar.make(binding.root, "Removed ${favorite.name}", Snackbar.LENGTH_LONG)
-                    .setAction("UNDO") {
+                Snackbar.make(
+                    binding.root,
+                    getString(R.string.removed_favorite, favorite.name),
+                    Snackbar.LENGTH_LONG
+                )                    .setAction("UNDO") {
                         viewModel.addFavorite(favorite) // Re-add if undone
                     }
                     .show()

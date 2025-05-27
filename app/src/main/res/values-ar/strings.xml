@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">سكاي كاست</string>
+    <string name="navigation_drawer_open">فتح القائمة الجانبية</string>
+    <string name="navigation_drawer_close">إغلاق القائمة الجانبية</string>
+    <string name="nav_header_title">أندرويد ستوديو</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">رأس التنقل</string>
+
+    <string name="menu_home">الرئيسية</string>
+    <string name="menu_gallery">المعرض</string>
+    <string name="menu_slideshow">عرض الشرائح</string>
+    <string name="menu_description">قائمة الخيارات</string>
+    <string name="clouds">السحب: %1$d%%</string>
+    <string name="humidity">الرطوبة: %1$d%%</string>
+    <string name="pressure">الضغط: %1$d هيكتوباسكال</string>
+    <string name="wind">الرياح: %1$s</string>
+    <string name="today_timeline">الخط الزمني لليوم</string>
+    <string name="forecast_5_day">توقعات 5 أيام</string>
+    <string name="settings">الإعدادات</string>
+    <string name="added_to_favorites">تمت إضافة إلى المفضلة</string>
+    <string name="invalid_coordinates">الإدخالات Manual غير صحيحة</string>
+    <string name="removed_favorite">تمت إزالة %s من المفضلة</string>
+    <string name="UNDO">إلغاء</string>
+
+
+
+
+    <!-- Preference Titles -->
+    <string name="messages_header">الرسائل</string>
+    <string name="sync_header">المزامنة</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">التوقيع الخاص بك</string>
+    <string name="reply_title">إجراء الرد الافتراضي</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">مزامنة البريد الإلكتروني دورياً</string>
+    <string name="attachment_title">تحميل المرفقات الواردة</string>
+    <string name="attachment_summary_on">تحميل المرفقات تلقائياً للبريد الوارد</string>
+    <string name="attachment_summary_off">تحميل المرفقات فقط عند الطلب</string>
+
+    <string name="language">اللغة</string>
+    <string name="general_settings">الإعدادات العامة</string>
+    <string name="temperature_unit">وحدة درجة الحرارة</string>
+    <string name="wind_speed_unit">وحدة سرعة الرياح</string>
+    <string name="use_manual_location">استخدام الموقع اليدوي</string>
+    <string name="city_name">اسم المدينة</string>
+    <string name="only_used_when_manual_location_is_enabled">تُستخدم فقط عند تفعيل الموقع اليدوي</string>
+    <string name="enable_manual_entry_of_coordinates">تمكين إدخال الإحداثيات يدوياً</string>
+    <string name="choose_wind_speed_measurement_unit">اختر وحدة قياس سرعة الرياح</string>
+    <string name="select_preferred_temperature_unit">اختر وحدة الحرارة المفضلة</string>
+    <string name="choose_app_language">اختر لغة التطبيق</string>
+</resources>

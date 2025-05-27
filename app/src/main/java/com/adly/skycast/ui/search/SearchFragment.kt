@@ -36,7 +36,7 @@ class SearchFragment : Fragment() {
                 viewModel.fetchWeather(city)
                 findNavController().navigate(R.id.weatherDetailsFragment)
             } else {
-                Toast.makeText(requireContext(), "Please enter a city name", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.city_name , Toast.LENGTH_SHORT).show()
             }
         }
 

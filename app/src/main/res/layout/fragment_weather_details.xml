@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="1dp">
 
     <LinearLayout
         android:orientation="vertical"
@@ -37,14 +37,18 @@
             android:layout_height="100dp"
             android:layout_marginBottom="12dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddToFavorites"
-            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="49dp"
             android:layout_height="wrap_content"
-            android:drawableStart="@android:drawable/btn_star"
-            android:drawablePadding="8dp"
             android:layout_marginTop="12dp"
-            android:textAllCaps="false"/>
+            android:textColor="?attr/colorPrimary"
+            app:backgroundTint="@android:color/transparent"
+            app:cornerRadius="16dp"
+            app:icon="@android:drawable/btn_star"
+            app:iconPadding="8dp"
+            app:iconTint="?attr/colorPrimary" />
 
 
         <!-- Temperature -->
