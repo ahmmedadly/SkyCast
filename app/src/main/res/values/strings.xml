@@ -25,4 +25,15 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="language">Language</string>
+    <string name="general_settings">General Settings</string>
+    <string name="temperature_unit">Temperature Unit</string>
+    <string name="wind_speed_unit">Wind Speed Unit</string>
+    <string name="use_manual_location">Use Manual Location</string>
+    <string name="city_name">City name</string>
+    <string name="only_used_when_manual_location_is_enabled">Only used when manual location is enabled</string>
+    <string name="enable_manual_entry_of_coordinates">Enable manual entry of coordinates</string>
+    <string name="choose_wind_speed_measurement_unit">Choose wind speed measurement unit</string>
+    <string name="select_preferred_temperature_unit">Select preferred temperature unit</string>
+    <string name="choose_app_language">Choose app language</string>
 </resources>

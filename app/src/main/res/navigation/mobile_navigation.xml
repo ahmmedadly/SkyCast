@@ -23,6 +23,13 @@
         android:id="@+id/favoritesFragment"
         android:name="com.adly.skycast.ui.favorites.FavoritesFragment"
         android:label="Favorites" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.adly.skycast.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+
+
 
 
 </navigation>

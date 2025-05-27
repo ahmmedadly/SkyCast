@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.SkyCast" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+    <style name="PreferenceThemeOverlay.SkyCast.Dark" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="colorPrimary">@color/primary_200</item>
         <item name="colorPrimaryVariant">@color/primary_500</item>
         <item name="colorOnPrimary">@color/text_primary_dark</item>
@@ -26,4 +28,5 @@
     <style name="TextInputStyleDark" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/primary_200</item>
     </style>
+
 </resources>

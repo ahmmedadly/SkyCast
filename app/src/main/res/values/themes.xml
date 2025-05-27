@@ -1,26 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Light Theme Overlay -->
+    <style name="PreferenceThemeOverlay.SkyCast.Light" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/primary_500</item>
+        <item name="colorPrimaryVariant">@color/primary_700</item>
+        <item name="colorOnPrimary">@color/text_primary_dark</item>
+    </style>
+
+    <!-- Main Light Theme -->
     <style name="Theme.SkyCast" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary_500</item>
         <item name="colorPrimaryVariant">@color/primary_700</item>
         <item name="colorOnPrimary">@color/text_primary_dark</item>
-
         <item name="android:windowBackground">@color/background_light</item>
         <item name="colorSurface">@color/surface_light</item>
         <item name="colorOnSurface">@color/text_primary_light</item>
-
         <item name="android:textColorPrimary">@color/text_primary_light</item>
         <item name="android:textColorSecondary">@color/text_secondary_light</item>
-
-        <!-- Card View -->
         <item name="cardViewStyle">@style/CardStyle</item>
-
-        <!-- Buttons -->
         <item name="materialButtonStyle">@style/ButtonStyle</item>
-
-        <!-- Text fields -->
         <item name="textInputStyle">@style/TextInputStyle</item>
     </style>
 
+    <!-- Card Style -->
     <style name="CardStyle" parent="@style/Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">?attr/colorSurface</item>
         <item name="cardElevation">4dp</item>
@@ -29,12 +30,14 @@
         <item name="strokeWidth">1dp</item>
     </style>
 
+    <!-- Button Style -->
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="cornerRadius">16dp</item>
         <item name="android:elevation">2dp</item>
         <item name="android:textColor">@color/text_primary_dark</item>
     </style>
 
+    <!-- Text Input Style -->
     <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="boxCornerRadiusTopEnd">16dp</item>

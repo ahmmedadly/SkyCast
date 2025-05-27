@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.*
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -25,7 +26,14 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by activityViewModels()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+// enable options menu in fragment
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
@@ -40,6 +48,21 @@ class HomeFragment : Fragment() {
 
         viewModel.todayHourly.observe(viewLifecycleOwner) { list ->
             todayAdapter.submitList(list)
+        }
+        // FAB to open settings 
+        binding.fabSetting.setOnClickListener { view ->
+            val popupMenu = PopupMenu(requireContext(), view)
+            popupMenu.menuInflater.inflate(R.menu.main, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_settings -> {
+                        findNavController().navigate(R.id.settingsFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.show()
         }
 
         // FAB to search

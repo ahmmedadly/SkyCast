@@ -13,8 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         viewModel.scheduleDailyCleanup(this)
-
-
-        // Set up three dots later for menu
     }
+
 }
