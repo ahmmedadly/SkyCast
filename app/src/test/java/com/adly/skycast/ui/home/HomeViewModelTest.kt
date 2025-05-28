@@ -16,7 +16,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.any
-import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -40,7 +39,7 @@ class HomeViewModelTest {
     fun setup() {
         Dispatchers.setMain(testDispatcher)
         // Ensure the ViewModel uses the mocked repository
-        viewModel = HomeViewModel(application, repository)
+        viewModel = HomeViewModel(application)
     }
 
     @After
