@@ -23,9 +23,9 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder>
 
     inner class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvDate: TextView = view.findViewById(R.id.tvDate)
-        val imgIcon: ImageView = view.findViewById(R.id.imgWeatherIcon)
-        val tvTemp: TextView = view.findViewById(R.id.tvTempForecast)
-        val tvDesc: TextView = view.findViewById(R.id.tvDescForecast)
+        val imgIcon: ImageView = view.findViewById(R.id.ivWeatherIcon)
+        val tvTemp: TextView = view.findViewById(R.id.tvTemperature)
+        val tvDesc: TextView = view.findViewById(R.id.tvHour)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastViewHolder {

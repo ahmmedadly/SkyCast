@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         viewModel.scheduleDailyCleanup(this)
+        //viewModel.scheduleAlertWorker(this)
+
     }
     override fun attachBaseContext(newBase: Context) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(newBase)

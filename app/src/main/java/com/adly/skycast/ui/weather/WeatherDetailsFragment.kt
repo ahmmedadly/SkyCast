@@ -77,9 +77,12 @@ class WeatherDetailsFragment : Fragment() {
                 Glide.with(this)
                     .load(iconUrl)
                     .into(binding.ivIcon)
+
             }
         }
-
+        viewModel.groupedForecast.observe(viewLifecycleOwner) { groupedList ->
+            groupedAdapter.submitList(groupedList)
+        }
         return binding.root
     }
 

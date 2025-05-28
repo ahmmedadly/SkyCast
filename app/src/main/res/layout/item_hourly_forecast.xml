@@ -2,43 +2,70 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="100dp"
+    android:layout_width="110dp"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
+    app:cardCornerRadius="16dp"
     app:cardElevation="2dp"
-    app:strokeColor="?attr/colorPrimary"
-    app:strokeWidth="1dp">
+    app:cardBackgroundColor="@color/surface_dark_1">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="12dp">
 
+        <!-- Hour -->
         <TextView
             android:id="@+id/tvHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9 AM"
+            android:text="11 AM"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="?attr/colorPrimary" />
+            android:textColor="@color/text_primary_dark"
+            android:textStyle="bold"/>
 
+        <!-- Weather icon -->
         <ImageView
-            android:id="@+id/ivIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/ivWeatherIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/cloudy"
             android:layout_marginVertical="8dp"/>
 
+        <!-- Temperature -->
         <TextView
-            android:id="@+id/tvTemp"
+            android:id="@+id/tvTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="21°C"
-            android:textSize="14sp"
-            android:textColor="?android:attr/textColorPrimary" />
+            android:text="30°"
+            android:textSize="20sp"
+            android:textColor="@color/text_primary_dark"
+            android:textStyle="bold"/>
 
+        <!-- Precipitation chance -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/snow_and_sleet_mix"
+                app:tint="@color/rain_dark" />
+
+            <TextView
+                android:id="@+id/tvPrecipitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10%"
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary_dark"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

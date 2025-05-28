@@ -33,7 +33,11 @@ class WeatherRepository(
                     dateText = item.dtTxt,
                     temperature = item.main.temp,
                     description = item.weather[0].description,
-                    icon = item.weather[0].icon
+                    icon = item.weather[0].icon,
+                    pressure = item.main.pressure,
+                    humidity = item.main.humidity,
+                    windSpeed = item.wind.speed,
+                    clouds = item.clouds.all
                 )
             }
 

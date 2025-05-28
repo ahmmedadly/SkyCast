@@ -22,6 +22,7 @@
     <string name="removed_favorite">Removed %s</string>
     <string name="UNDO">Language</string>
     <string name="already_in_favorites">Already in favorites</string>
+    <string name="offline_status">⚠️ Offline • Last updated: %s</string>
 
 
 

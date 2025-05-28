@@ -1,52 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="120dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="16dp"
     app:cardElevation="2dp"
-    app:strokeColor="?attr/colorPrimary"
-    app:strokeWidth="1dp">
+    app:cardBackgroundColor="@color/surface_dark_1">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:padding="16dp">
 
+        <!-- Day name -->
+        <TextView
+            android:id="@+id/tvDayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monday"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary_dark"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- Date -->
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wed 12PM"
+            android:text="Sep 12"
             android:textSize="14sp"
-            android:textColor="?attr/colorPrimary"
-            android:paddingBottom="8dp" />
+            android:textColor="@color/text_secondary_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDayName"
+            android:layout_marginTop="4dp"/>
 
+        <!-- Weather icon -->
         <ImageView
-            android:id="@+id/imgWeatherIcon"
+            android:id="@+id/ivWeatherIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_sunny" />
+            android:src="@drawable/cloudy_2_day"
+            app:layout_constraintEnd_toStartOf="@id/tvHighTemp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="16dp"/>
 
+        <!-- High temperature -->
         <TextView
-            android:id="@+id/tvTempForecast"
+            android:id="@+id/tvHighTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="26°C"
+            android:text="32°"
             android:textSize="18sp"
+            android:textColor="@color/temp_high_dark"
             android:textStyle="bold"
-            android:textColor="?android:attr/textColorPrimary" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
+        <!-- Low temperature -->
         <TextView
-            android:id="@+id/tvDescForecast"
+            android:id="@+id/tvLowTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear"
-            android:textSize="14sp"
-            android:textColor="?android:attr/textColorSecondary" />
+            android:text="26°"
+            android:textSize="16sp"
+            android:textColor="@color/temp_low_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHighTemp"
+            android:layout_marginTop="4dp"/>
 
-    </LinearLayout>
+        <!-- Precipitation chance -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDate"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/clear_day"
+                app:tint="@color/rain_dark" />
+
+            <TextView
+                android:id="@+id/tvPrecipitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30%"
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary_dark"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

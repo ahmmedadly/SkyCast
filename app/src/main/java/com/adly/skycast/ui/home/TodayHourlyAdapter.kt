@@ -24,8 +24,8 @@ class TodayHourlyAdapter : RecyclerView.Adapter<TodayHourlyAdapter.HourViewHolde
 
     class HourViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvHour: TextView = itemView.findViewById(R.id.tvHour)
-        val tvTemp: TextView = itemView.findViewById(R.id.tvTemp)
-        val ivIcon: ImageView = itemView.findViewById(R.id.ivIcon)
+        val tvTemp: TextView = itemView.findViewById(R.id.tvTemperature)
+        val ivIcon: ImageView = itemView.findViewById(R.id.ivWeatherIcon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourViewHolder {

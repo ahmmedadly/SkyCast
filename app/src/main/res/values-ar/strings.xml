@@ -22,6 +22,8 @@
     <string name="removed_favorite">تمت إزالة %s من المفضلة</string>
     <string name="UNDO">إلغاء</string>
     <string name="already_in_favorites">بالفعل في المفضلة</string>
+    <string name="offline_status">⚠️ غير متصل • اخر تحديث: %s</string>
+
 
 
 

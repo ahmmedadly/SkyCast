@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme -->
+    <style name="Theme.ModernWeather" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/blue_500</item>
+        <item name="colorPrimaryVariant">@color/blue_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/orange_500</item>
+        <item name="colorSecondaryVariant">@color/orange_700</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+        <!-- Custom styles -->
+    </style>
+    
+    <!-- Bottom Navigation Active Indicator -->
+    <style name="App.BottomNavigation.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/blue_200</item>
+    </style>
+    
+    <!-- Card styles -->
+    <style name="WeatherCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">@color/card_background_d</item>
+    </style>
+    
+    <!-- Text styles -->
+    <style name="TextAppearance.WeatherTemp" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.WeatherCity" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.WeatherCondition" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    
+    <style name="TextAppearance.WeatherDetails" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    
+    <style name="TextAppearance.WeatherDate" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_tertiary</item>
+    </style>
+</resources>

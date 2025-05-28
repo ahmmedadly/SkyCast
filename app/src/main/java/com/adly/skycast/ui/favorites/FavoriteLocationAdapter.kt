@@ -20,7 +20,7 @@ class FavoriteLocationAdapter(
             onClick: (FavoriteLocationEntity) -> Unit,
             onDelete: (FavoriteLocationEntity) -> Unit
         ) {
-            binding.tvCityName.text = "${item.name}, ${item.country}"
+            binding.tvCountry.text = "${item.name}, ${item.country}"
             binding.root.setOnClickListener { onClick(item) }
             binding.btnDelete.setOnClickListener { onDelete(item) }
         }

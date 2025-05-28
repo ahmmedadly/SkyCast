@@ -46,12 +46,17 @@
             app:defaultValue="false"
             app:icon="@drawable/location_on_24px" />
 
-<!--        <EditTextPreference-->
-<!--            app:key="coordinates"-->
-<!--            app:title="@string/city_name"-->
-<!--            android:summary="@string/only_used_when_manual_location_is_enabled"-->
-<!--            app:dependency="manual_location"-->
-<!--            app:useSimpleSummaryProvider="true"/>-->
+        <EditTextPreference
+            app:key="coordinates"
+            app:title="@string/city_name"
+            android:summary="@string/only_used_when_manual_location_is_enabled"
+            app:dependency="manual_location"
+            app:useSimpleSummaryProvider="true"/>
+        <SwitchPreferenceCompat
+            app:key="alerts_enabled"
+            app:title="Enable Weather Alerts"
+            app:defaultValue="true"
+            app:icon="@android:drawable/ic_lock_idle_alarm" />
 
     </PreferenceCategory>
 

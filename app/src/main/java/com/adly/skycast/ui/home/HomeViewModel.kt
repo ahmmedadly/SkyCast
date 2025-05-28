@@ -24,7 +24,7 @@ import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel(application: Application, weatherRepository: Any?) : AndroidViewModel(application) {
 
     private val repository: WeatherRepository
 
