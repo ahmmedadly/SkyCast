@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -133,6 +134,14 @@ class HomeFragment : Fragment() {
         getCurrentLocationWeather()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Handle back press to exit app
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            requireActivity().finish()
+        }
     }
 
     private fun getCurrentLocationWeather() {

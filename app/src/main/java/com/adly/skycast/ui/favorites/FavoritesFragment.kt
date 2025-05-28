@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -38,8 +39,8 @@ class FavoritesFragment : Fragment() {
                     getString(R.string.removed_favorite, favorite.name),
                     Snackbar.LENGTH_LONG
                 )                    .setAction("UNDO") {
-                        viewModel.addFavorite(favorite) // Re-add if undone
-                    }
+                    viewModel.addFavorite(favorite) // Re-add if undone
+                }
                     .show()
             }
         )
@@ -52,5 +53,13 @@ class FavoritesFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Handle back press to go back to previous screen
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            findNavController().popBackStack()
+        }
     }
 }

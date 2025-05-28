@@ -21,6 +21,7 @@
     <string name="invalid_coordinates">الإدخالات Manual غير صحيحة</string>
     <string name="removed_favorite">تمت إزالة %s من المفضلة</string>
     <string name="UNDO">إلغاء</string>
+    <string name="already_in_favorites">بالفعل في المفضلة</string>
 
 
 

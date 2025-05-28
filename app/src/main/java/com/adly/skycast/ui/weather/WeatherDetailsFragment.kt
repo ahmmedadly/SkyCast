@@ -1,8 +1,11 @@
 package com.adly.skycast.ui.weather
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -12,9 +15,7 @@ import com.bumptech.glide.Glide
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adly.skycast.R
 import com.adly.skycast.data.model.FavoriteLocationEntity
-import com.adly.skycast.ui.home.ForecastAdapter
 import com.adly.skycast.ui.home.GroupedForecastAdapter
-
 
 class WeatherDetailsFragment : Fragment() {
     private lateinit var binding: FragmentWeatherDetailsBinding
@@ -29,6 +30,7 @@ class WeatherDetailsFragment : Fragment() {
         viewModel.groupedForecast.observe(viewLifecycleOwner) { groupedList ->
             groupedAdapter.submitList(groupedList)
         }
+
         binding.btnAddToFavorites.setOnClickListener {
             viewModel.weather.value?.let { weather ->
                 val city = weather.city
@@ -38,11 +40,23 @@ class WeatherDetailsFragment : Fragment() {
                     lat = city.coord.lat,
                     lon = city.coord.lon
                 )
-                viewModel.addFavorite(fav)
-                Toast.makeText(requireContext(), R.string.added_to_favorites, Toast.LENGTH_SHORT).show()
 
-                // Navigate back to Search or Home
-                findNavController().popBackStack()
+                // Check if favorite already exists
+                if (viewModel.isFavoriteExists(fav)) {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.already_in_favorites,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    viewModel.addFavorite(fav)
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.added_to_favorites,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    findNavController().popBackStack()
+                }
             }
         }
 
@@ -67,5 +81,12 @@ class WeatherDetailsFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            findNavController().popBackStack()
+        }
     }
 }

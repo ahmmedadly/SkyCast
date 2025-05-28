@@ -165,5 +165,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         return prefs.getString("wind_speed_unit", "KMH") ?: "KMH"
     }
-
+    fun isFavoriteExists(favorite: FavoriteLocationEntity): Boolean {
+        return favorites.value?.any {
+            it.name == favorite.name && it.country == favorite.country
+        } == true
+    }
 }

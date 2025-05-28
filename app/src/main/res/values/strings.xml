@@ -21,7 +21,7 @@
     <string name="invalid_coordinates">Invalid manual coordinates</string>
     <string name="removed_favorite">Removed %s</string>
     <string name="UNDO">Language</string>
-
+    <string name="already_in_favorites">Already in favorites</string>
 
 
 
